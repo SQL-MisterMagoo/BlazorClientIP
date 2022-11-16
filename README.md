@@ -7,3 +7,5 @@ Demonstrates two ways to get the client IP address
 `Index.razor` displays that IP address and additionally makes a call to the browser to `fetch` the IP address
 
 You would normally not use `eval` but this is just a demo.
+
+Try it out : https://blazorclientip.azurewebsites.net/
