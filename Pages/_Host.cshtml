@@ -1,0 +1,9 @@
+﻿@page "/"
+@namespace BlazorClientIP.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+  Layout = "_Layout";
+  string MyIP = HttpContext?.Connection?.RemoteIpAddress?.ToString() ?? "Not known";
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" param-MyIP="@MyIP" />

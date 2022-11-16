@@ -1,0 +1,23 @@
+﻿@page "/"
+@using System.Text.Json;
+@inject IJSRuntime JS
+
+<PageTitle>Blazor Client IP</PageTitle>
+
+<div>My IP (from the server) is : @MyIP</div>
+<div>My IP (from the client) is : @MyIPJS</div>
+
+@code
+{
+	[CascadingParameter] public string MyIP { get; set; }
+	string MyIPJS = "Unknown";
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (!firstRender)
+			return;
+
+		var result = await JS.InvokeAsync<JsonElement>("eval", "fetch('https://api.ipify.org').then((body)=>body.text())");
+		MyIPJS = result.GetString();
+		StateHasChanged();
+	}
+}
